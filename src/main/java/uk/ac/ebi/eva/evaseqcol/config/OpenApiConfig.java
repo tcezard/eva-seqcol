@@ -1,21 +1,14 @@
-package uk.ac.ebi.eva.evaseqcol.controller.swagger;
-
+package uk.ac.ebi.eva.evaseqcol.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class SwaggerConfig implements WebMvcConfigurer {
-
-    @Autowired
-    private SwaggerInterceptAdapter interceptAdapter;
+public class OpenApiConfig {
 
     @Bean
     public OpenAPI seqColOpenAPI() {
@@ -28,10 +21,5 @@ public class SwaggerConfig implements WebMvcConfigurer {
                         .version("v1.0")
                         .license(new License().name("Apache-2.0").url("https://raw.githubusercontent.com/EBIvariation/eva-seqcol/main/LICENSE"))
                         .contact(new Contact().name("GitHub Repository").url("https://github.com/EBIvariation/eva-seqcol").email(null)));
-    }
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(interceptAdapter);
     }
 }
